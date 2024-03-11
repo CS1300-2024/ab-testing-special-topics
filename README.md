@@ -7,7 +7,7 @@ This frequency plot represents the (un-normalized) pdf of finding a points, so w
 
 Relating to AB testing, we can view the t-score as this particle doing a "random walk", with the p-value as the probability of finding a walk at that distance. By converting the average to a t-score, you have effectively normalized the walk, and can use the normal distribution to find the p-value.
 
-When you argue that "if the p-value is less than 0.05, then the null hypothesis is rejected", you are saying that "if the probability of finding a sample in this position is less than .05 and I found it (in your sampleA vs sampleB calculations), then it's highly unlinkely this path is a coicidence and the null hypothesis can be rejected." 
+When you argue that "if the p-value is less than 0.05, then the null hypothesis is rejected", you are saying that "if the probability of finding a sample in this position is less than .05 and I found it (in your sampleA vs sampleB calculations), then it's highly unlinkely this path (i.e. the difference in means for your two samples) is a coincidence and the null hypothesis can be rejected." 
 
 ## Random Speeds
 Notice how the distribution of random speeds and enegeries frequency graph is not normal - it's mostly normal but skewed with a longer right tail. This is because speed has no direction (as it's the magnitude of velocity), so the distrubtion is no longer normal.
