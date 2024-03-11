@@ -1,13 +1,22 @@
 using Plots
 using Distributions
 
-num_velocities = 1000
+num_velocities = 100000
+num_dimensions = 3
 
 println("Starting Random Speed Simualtions...\n")
 
 function make_random_velocity()
     # pull 3 nums randomly from normal distribution
     N = Normal(0, 1)
+    if num_dimensions == 1
+        return (rand(N), 0, 0)
+    end
+
+    if num_dimensions == 2
+        return (rand(N), rand(N), 0)
+    end
+
     return (rand(N), rand(N), rand(N))
 end
 
@@ -56,14 +65,20 @@ p = Plots.scatter(
     title="Velocities")
 savefig(p, "figs/rs-3dvels.png")
 
-# plot their speeds
 speeds = [sqrt(v[1]^2 + v[2]^2 + v[3]^2) for v in velocities]
 p = histogram(
-    speeds, title="Randomly Generated Speeds (n=$num_velocities)", 
-    legend=false, xlabel="Speed", ylabel="Frequency")
+    speeds, title="Randomly Generated Speeds (n=$num_velocities, d=$num_dimensions)", 
+    legend=false, xlabel="Speed = \$ √(v_x^2 + v_y^2 + v_z^2) \$", ylabel="Frequency")
 savefig(p, "figs/rs-speeds.png")
+
+# plot their energy
+energies = [.5 * (v[1]^2 + v[2]^2 + v[3]^2) for v in velocities]
+p = histogram(
+    energies, title="Randomly Generate`d Energies (n=$num_velocities, d=$num_dimensions)", 
+    legend=false, xlabel="Energy =  \$ .5m(v_x^2 + v_y^2 + v_z^2) \$", ylabel="Frequency")
+savefig(p, "figs/rs-energies.png")
 # print the mean and standard deviation of the speed distribution
-println("\nSpeed->\tμ:$(mean(speeds)), σ:$(std(speeds)), n:$(length(speeds))")
+println("\tEnergies->\tμ:$(mean(energies)), σ:$(std(energies)), n:$(length(energies))")
 
 
 println("\nRandom Speed Simualtions Complete!")
